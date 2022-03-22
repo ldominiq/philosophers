@@ -1,4 +1,7 @@
 SRCS 		= 	./main.c \
+				./list_handler/init.c \
+				./list_handler/print.c \
+				./list_handler/remove.c \
 
 SRC			= 	$(addprefix $(DIR), $(SRCS))
 
@@ -6,7 +9,7 @@ DIR			= 	src/
 
 OBJS 		= 	${SRC:.c=.o}
 
-NAME 		= 	push_swap
+NAME 		= 	philo
 
 AR 			= 	ar rcs
 

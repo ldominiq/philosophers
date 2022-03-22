@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldominiq <marvin@42lausanne.ch>            +#+  +:+       +#+         #
+#    By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/11 16:43:57 by ldominiq          #+#    #+#              #
-#    Updated: 2021/10/20 12:58:10 by ldominiq         ###   ########.fr        #
+#    Updated: 2022/03/22 12:20:53 by ldominiq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRCS 		= ft_isalpha.c    \
 			  ft_putendl_fd.c \
 			  ft_putnbr_fd.c  \
 			  ft_strtrim.c    \
-			  ft_split.c
+			  ft_split.c      
 
 OBJS 		= ${SRCS:.c=.o}
 
@@ -53,12 +53,11 @@ AR 			= ar rcs
 
 RM 			= rm -f
 
+CC			= gcc
+
 CFLAGS 		= -Wall -Wextra -Werror
 
 all: 		${NAME}
-
-%(OBJS):	%.o: %.c
-			gcc -c $(CFLAGS) $< -o $@
 
 ${NAME}: 	${OBJS}
 			${AR} ${NAME} ${OBJS}
