@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   args_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 12:33:34 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/22 12:33:52 by ldominiq         ###   ########.fr       */
+/*   Created: 2022/03/22 17:44:16 by ldominiq          #+#    #+#             */
+/*   Updated: 2022/03/22 19:21:45 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	print_list(t_list *list)
+int	check_args(int argc, char *argv[])
 {
-	t_philo *current;
-	if (list != NULL)
+	int	tmp;
+
+	if (argc != 5 && argc != 6)
+		return (1);
+	tmp = ft_atoi(argv[1]);
+	if (tmp <= 0)
+		return (1);
+	tmp = ft_atoi(argv[2]);
+	if (tmp <= 0)
+		return (1);
+	tmp = ft_atoi(argv[3]);
+	if (tmp <= 0)
+		return (1);
+	tmp = ft_atoi(argv[4]);
+	if (tmp <= 0)
+		return (1);
+	if (argc == 6)
 	{
-		current = list->first;
-		while (current != NULL)
-		{
-			printf("%d -> ", current->pos);
-			current = current->next;
-		}
+		tmp = ft_atoi(argv[5]);
+		if (tmp < 0)
+			return (1);
 	}
-	printf("NULL\n");
+	return (0);
 }

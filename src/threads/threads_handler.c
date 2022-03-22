@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove.c                                           :+:      :+:    :+:   */
+/*   threads_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 12:32:50 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/22 12:33:57 by ldominiq         ###   ########.fr       */
+/*   Created: 2022/03/22 19:04:49 by ldominiq          #+#    #+#             */
+/*   Updated: 2022/03/22 19:38:14 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	remove_philo(t_list *list)
+//TODO: Statuses handling (EATING/SLEEPING/THINKING...)
+void	*philo_routine(void *arg)
 {
-	t_philo *philo;
+	(void) arg;
 
-	if (list != NULL)
-	{
-		if (list->first != NULL)
-		{
-			philo = list->first;
-			list->first = list->first->next;
-			free(philo);
-		}
-	}
+	return (NULL);
+}
+
+//TODO: Handling of dead philosopher
+void	*grim_reaper_routine(void *arg)
+{
+	(void) arg;
+
+	return (NULL);
 }

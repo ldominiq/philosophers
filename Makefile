@@ -1,7 +1,8 @@
 SRCS 		= 	./main.c \
-				./list_handler/init.c \
-				./list_handler/print.c \
-				./list_handler/remove.c \
+				./data/init.c \
+				./data/args_check.c \
+				./threads/threads_starter.c \
+				./threads/threads_handler.c \
 
 SRC			= 	$(addprefix $(DIR), $(SRCS))
 
