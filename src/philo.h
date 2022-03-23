@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:40:52 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/23 17:11:16 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/24 00:02:37 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,19 @@
 # define EATING 2
 # define SLEEPING 3
 
+# define MSG_FORK "has taken a fork"
+# define MSG_EATING "is eating"
+# define MSG_SLEEPING "is sleeping"
+# define MSG_THINKING "is thinking"
+# define MSG_DEAD "died"
+# define MSG_FULL "philosophers are full"
+
 typedef struct s_philo
 {
 	int				idx;
 	int				nb_meal;
-	int				last_meal;
+	unsigned long long				last_meal;
+	int				full;
 	int				state;
 	pthread_mutex_t	*m_lfork;
 	pthread_mutex_t	*m_rfork;
@@ -53,10 +61,13 @@ typedef struct s_data
 	struct timeval		timer;
 }			t_data;
 
-int		check_args(int argc, char *argv[]);
-void	*init_all(t_data *data, int argc, char *argv[]);
-void	*start_threads(t_data *data);
-void	*philo_routine(void *arg);
-void	*grim_reaper_routine(void *arg);
+int					check_args(int argc, char *argv[]);
+void				*init_all(t_data *data, int argc, char *argv[]);
+void				*start_threads(t_data *data);
+void				*philo_routine(void *arg);
+void				*grim_reaper_routine(void *arg);
+unsigned long long	get_current_time(void);
+void				print_status(t_data *data, char *msg, int i);
+void				wait_action(unsigned long long time);
 
 #endif

@@ -3,6 +3,7 @@ SRCS 		= 	./main.c \
 				./data/args_check.c \
 				./threads/threads_starter.c \
 				./threads/threads_handler.c \
+				./threads/utils.c \
 
 SRC			= 	$(addprefix $(DIR), $(SRCS))
 

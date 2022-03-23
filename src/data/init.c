@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:43:14 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/23 17:13:41 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:24:48 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_philo(t_data *data, int i)
 	data->philosophers[i].idx = i + 1;
 	data->philosophers[i].nb_meal = 0;
 	data->philosophers[i].state = THINKING;
+	data->philosophers[i].full = 0;
 	data->philosophers[i].m_rfork = data->m_forks[i];
 	if (i + 1 == data->p_amount)
 		data->philosophers[i].m_lfork = data->m_forks[0];
