@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:40:52 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/22 19:17:06 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:11:16 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,17 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define THINKING 0
+# define HUNGRY 1
+# define EATING 2
+# define SLEEPING 3
 
 typedef struct s_philo
 {
 	int				idx;
 	int				nb_meal;
 	int				last_meal;
+	int				state;
 	pthread_mutex_t	*m_lfork;
 	pthread_mutex_t	*m_rfork;
 }			t_philo;

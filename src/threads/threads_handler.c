@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:04:49 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/22 19:38:14 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:26:47 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 //TODO: Statuses handling (EATING/SLEEPING/THINKING...)
 void	*philo_routine(void *arg)
 {
-	(void) arg;
+	t_data *data;
+
+	data = arg;
+	printf("%d\n", data->philosophers->state);
 
 	return (NULL);
 }
