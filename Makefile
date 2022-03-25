@@ -19,7 +19,7 @@ GCC			= 	gcc
 
 RM 			= 	rm -f
 
-CFLAGS 		= 	-g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS 		= 	-g -fsanitize=address -pthread -Wall -Wextra -Werror
 
 LBFT_PATH	= 	./libft/
 

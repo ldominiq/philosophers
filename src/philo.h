@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:40:52 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/24 00:02:37 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:26:26 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@
 
 typedef struct s_philo
 {
-	int				idx;
-	int				nb_meal;
+	int								idx;
+	int								nb_meal;
 	unsigned long long				last_meal;
-	int				full;
-	int				state;
-	pthread_mutex_t	*m_lfork;
-	pthread_mutex_t	*m_rfork;
+	int								full;
+	int								state;
+	pthread_mutex_t					*m_lfork;
+	pthread_mutex_t					*m_rfork;
+	pthread_t						*philo;
 }			t_philo;
 
 typedef struct s_data
@@ -54,11 +55,13 @@ typedef struct s_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nb_to_eat;
+	int					stop;
 	t_philo				*philosophers;
 	pthread_mutex_t		*m_write;
 	pthread_mutex_t		**m_forks;
 	unsigned long long	t_start;
 	struct timeval		timer;
+	pthread_t			*grim_reaper;
 }			t_data;
 
 int					check_args(int argc, char *argv[]);
@@ -67,7 +70,7 @@ void				*start_threads(t_data *data);
 void				*philo_routine(void *arg);
 void				*grim_reaper_routine(void *arg);
 unsigned long long	get_current_time(void);
-void				print_status(t_data *data, char *msg, int i);
+void				print_status(t_data *data, char *msg, int i, int done);
 void				wait_action(unsigned long long time);
 
 #endif

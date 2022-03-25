@@ -6,13 +6,35 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 23:23:11 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/24 00:02:19 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/25 23:21:08 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-unsigned long long get_current_time(void)
+void	clean_exit(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	data->stop = 1;
+	while (++i < data->p_amount)
+	{
+		pthread_mutex_destroy(data->philosophers[i].m_lfork);
+		pthread_mutex_destroy(data->philosophers[i].m_rfork);
+		pthread_detach(*data->philosophers[i].philo);
+		free(data->philosophers[i].philo);
+		free(data->m_forks[i]);
+	}
+	pthread_mutex_destroy(data->m_write);
+	free(data->m_forks);
+	free(data->m_write);
+	free(data->philosophers);
+	pthread_detach(*data->grim_reaper);
+	free(data->grim_reaper);
+}
+
+unsigned long long	get_current_time(void)
 {
 	struct timeval	current;
 
@@ -20,12 +42,13 @@ unsigned long long get_current_time(void)
 	return ((current.tv_sec * 1000) + (current.tv_usec / 1000));
 }
 
-void	print_status(t_data *data, char *msg, int i)
+void	print_status(t_data *data, char *msg, int i, int done)
 {
 	pthread_mutex_lock(data->m_write);
 	printf("%lld %d %s\n", get_current_time(), i + 1, msg);
+	if (done)
+		clean_exit(data);
 	pthread_mutex_unlock(data->m_write);
-
 }
 
 void	wait_action(unsigned long long time)

@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:43:14 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/23 20:24:48 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:26:01 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_data(t_data *data, int argc, char *argv[])
 		data->nb_to_eat = ft_atoi(argv[5]);
 	else
 		data->nb_to_eat = -1;
+	data->stop = 0;
 }
 
 void	*init_mutex(t_data *data)
