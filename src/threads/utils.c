@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 23:23:11 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/25 23:21:08 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/26 14:27:53 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ unsigned long long	get_current_time(void)
 void	print_status(t_data *data, char *msg, int i, int done)
 {
 	pthread_mutex_lock(data->m_write);
-	printf("%lld %d %s\n", get_current_time(), i + 1, msg);
+	printf("%lld %d %s\n", get_current_time() - data->t_start, i + 1, msg);
 	if (done)
 		clean_exit(data);
 	pthread_mutex_unlock(data->m_write);

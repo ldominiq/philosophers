@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:04:49 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/26 00:00:00 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:06:24 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@ void	*eat(t_data *data, int i)
 		return (NULL);
 	pthread_mutex_lock(data->philosophers[i].m_rfork);
 	print_status(data, MSG_FORK, i, 0);
+	if (data->stop)
+		return (NULL);
 	pthread_mutex_lock(data->philosophers[i].m_lfork);
 	print_status(data, MSG_FORK, i, 0);
+	if (data->stop)
+		return (NULL);
 	data->philosophers[i].last_meal = get_current_time();
 	data->philosophers[i].nb_meal++;
 	print_status(data, MSG_EATING, i, 0);
+	if (data->stop)
+		return (NULL);
 	wait_action(data->time_to_eat);
 	if (data->stop)
 		return (NULL);
@@ -54,7 +60,7 @@ void	*philo_routine(void *arg)
 	return (NULL);
 }
 
-//TODO: fix timestamp / fix one philo stuck after death / fix eating algo to prevent death
+//TODO: fix one philo stuck after death / fix eating algo to prevent death
 void	*grim_reaper_routine(void *arg)
 {
 	t_data	*data;

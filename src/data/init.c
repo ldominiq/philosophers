@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:43:14 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/25 22:26:01 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/26 14:27:14 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	*init_all_philo(t_data *data)
 	i = -1;
 	while (++i < data->p_amount)
 		init_philo(data, i);
-	data->t_start = gettimeofday(&data->timer, NULL);
+	data->t_start = get_current_time();
 	return (data);
 }
 

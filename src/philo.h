@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:40:52 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/25 22:26:26 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/26 14:27:11 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_data
 	pthread_mutex_t		*m_write;
 	pthread_mutex_t		**m_forks;
 	unsigned long long	t_start;
-	struct timeval		timer;
 	pthread_t			*grim_reaper;
 }			t_data;
 
