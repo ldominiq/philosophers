@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:53:01 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/25 22:53:41 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:52:03 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*start_threads(t_data *data)
 	if (!data->grim_reaper)
 		return (NULL);
 	pthread_create(data->grim_reaper, NULL, grim_reaper_routine, data);
+	pthread_join(*data->grim_reaper, NULL);
 	i = -1;
 	while (++i < data->p_amount)
 	{

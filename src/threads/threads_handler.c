@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:04:49 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/26 15:06:24 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/30 20:23:09 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	*philo_routine(void *arg)
 	data = (t_data *)arg;
 	i = data->idx++;
 	data->philosophers[i].last_meal = get_current_time();
+	if (is_even(i))
+		wait_action(data->time_to_eat);
 	while (!data->stop)
 	{
 		eat(data, i);
@@ -60,7 +62,7 @@ void	*philo_routine(void *arg)
 	return (NULL);
 }
 
-//TODO: fix one philo stuck after death / fix eating algo to prevent death
+//TODO: fix eating algo to prevent death / fix messages showing after death/full
 void	*grim_reaper_routine(void *arg)
 {
 	t_data	*data;
@@ -80,8 +82,9 @@ void	*grim_reaper_routine(void *arg)
 		i = -1;
 		while (++i < data->p_amount && data->nb_to_eat != -1)
 		{
-			if (data->philosophers[i].nb_meal >= data->nb_to_eat)
-				count++;
+			if (!data->stop)
+				if (data->philosophers[i].full)
+					count++;
 		}
 		if (count == data->p_amount && data->nb_to_eat != -1)
 			print_status(data, MSG_FULL, data->p_amount - 1, 1);

@@ -6,7 +6,7 @@
 /*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:40:52 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/26 14:27:11 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/03/30 20:22:11 by ldominiq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 # define EATING 2
 # define SLEEPING 3
 
-# define MSG_FORK "has taken a fork"
-# define MSG_EATING "is eating"
-# define MSG_SLEEPING "is sleeping"
-# define MSG_THINKING "is thinking"
-# define MSG_DEAD "died"
-# define MSG_FULL "philosophers are full"
+# define MSG_FORK "🍴 has taken a fork      |"
+# define MSG_EATING "🍝 is eating             |"
+# define MSG_SLEEPING "😴 is sleeping           |"
+# define MSG_THINKING "🤔 is thinking           |"
+# define MSG_DEAD "💀 died                  |"
+# define MSG_FULL "😋 philosophers are full |"
 
 typedef struct s_philo
 {
@@ -71,5 +71,6 @@ void				*grim_reaper_routine(void *arg);
 unsigned long long	get_current_time(void);
 void				print_status(t_data *data, char *msg, int i, int done);
 void				wait_action(unsigned long long time);
+int					is_even(int idx);
 
 #endif
