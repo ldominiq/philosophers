@@ -62,7 +62,7 @@ void	*philo_routine(void *arg)
 	return (NULL);
 }
 
-//TODO: fix eating algo to prevent death / fix messages showing after death/full
+//TODO: fix eating algo to prevent death: 4 410 200 200
 void	*grim_reaper_routine(void *arg)
 {
 	t_data	*data;
@@ -80,6 +80,7 @@ void	*grim_reaper_routine(void *arg)
 				print_status(data, MSG_DEAD, i, 1);
 		}
 		i = -1;
+		count = 0;
 		while (++i < data->p_amount && data->nb_to_eat != -1)
 		{
 			if (!data->stop)

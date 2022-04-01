@@ -22,7 +22,6 @@ void	clean_exit(t_data *data)
 	{
 		pthread_mutex_destroy(data->philosophers[i].m_lfork);
 		pthread_mutex_destroy(data->philosophers[i].m_rfork);
-		pthread_detach(*data->philosophers[i].philo);
 		free(data->philosophers[i].philo);
 		free(data->m_forks[i]);
 	}
@@ -30,7 +29,6 @@ void	clean_exit(t_data *data)
 	free(data->m_write);
 	free(data->m_forks);
 	free(data->philosophers);
-	pthread_detach(*data->grim_reaper);
 	free(data->grim_reaper);
 }
 

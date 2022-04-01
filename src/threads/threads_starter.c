@@ -23,19 +23,17 @@ void	*start_threads(t_data *data)
 		if (!data->philosophers[i].philo)
 			return (NULL);
 	}
-	i = -1;
-	while (++i < data->p_amount)
-		pthread_create(data->philosophers[i].philo, NULL, philo_routine, data);
 	data->grim_reaper = (pthread_t *)malloc(sizeof(pthread_t));
 	if (!data->grim_reaper)
 		return (NULL);
-	pthread_create(data->grim_reaper, NULL, grim_reaper_routine, data);
-	pthread_join(*data->grim_reaper, NULL);
 	i = -1;
 	while (++i < data->p_amount)
-	{
-		if (!data->stop)
-			pthread_join(*data->philosophers[i].philo, NULL);
-	}
+		pthread_create(data->philosophers[i].philo, NULL, philo_routine, data);
+	pthread_create(data->grim_reaper, NULL, grim_reaper_routine, data);
+	i = -1;
+	if (!data->stop)
+		pthread_join(*data->grim_reaper, NULL);
+	while (++i < data->p_amount && !data->stop)
+		pthread_join(*data->philosophers[i].philo, NULL);
 	return (0);
 }
