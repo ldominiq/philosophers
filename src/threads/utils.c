@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 23:23:11 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/30 20:22:32 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:38:54 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,15 @@ void	print_status(t_data *data, char *msg, int i, int done)
 
 void	wait_action(unsigned long long time)
 {
-	usleep(time * 1000);
+	unsigned long long	i;
+
+	i = get_current_time();
+	while (1)
+	{
+		if ((get_current_time() - i) >= time)
+			break ;
+		usleep(50);
+	}
 }
 
 int	is_even(int idx)

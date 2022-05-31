@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldominiq <ldominiq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:04:49 by ldominiq          #+#    #+#             */
-/*   Updated: 2022/03/30 20:23:09 by ldominiq         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:58:45 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*philo_routine(void *arg)
 	data = (t_data *)arg;
 	i = data->idx++;
 	data->philosophers[i].last_meal = get_current_time();
-	if (is_even(i))
+	if (is_even(i) && data->p_amount > 1)
 		wait_action(data->time_to_eat);
 	while (!data->stop)
 	{
@@ -62,7 +62,12 @@ void	*philo_routine(void *arg)
 	return (NULL);
 }
 
-//TODO: fix eating algo to prevent death: 4 410 200 200
+void	is_full(t_data *data, int count)
+{
+	if (count == data->p_amount && data->nb_to_eat != -1)
+		print_status(data, MSG_FULL, data->p_amount - 1, 1);
+}
+
 void	*grim_reaper_routine(void *arg)
 {
 	t_data	*data;
@@ -75,8 +80,8 @@ void	*grim_reaper_routine(void *arg)
 		i = -1;
 		while (++i < data->p_amount && !data->stop)
 		{
-			if (get_current_time() - data->philosophers[i].last_meal \
-				> (unsigned long long)data->time_to_die)
+			if (get_current_time() - data->philosophers[i].last_meal > \
+				(unsigned long long)data->time_to_die)
 				print_status(data, MSG_DEAD, i, 1);
 		}
 		i = -1;
@@ -87,8 +92,7 @@ void	*grim_reaper_routine(void *arg)
 				if (data->philosophers[i].full)
 					count++;
 		}
-		if (count == data->p_amount && data->nb_to_eat != -1)
-			print_status(data, MSG_FULL, data->p_amount - 1, 1);
+		is_full(data, count);
 	}
 	return (NULL);
 }
